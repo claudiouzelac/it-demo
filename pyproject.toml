@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "it-demo"
+version = "0.0.1"
+description = "A demonstrational project for the Mozilla IT department's offsite"
+authors = [
+    "Stewart Henderson <shenderson@mozilla.com"
+]
+license = "MPL"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.6"
+Flask = "^1.1"
+requests = "^2.22"
+
+[tool.poetry.dev-dependencies]
+black = { version = "*", allows-prereleases = true }
+flake8 = "^3.7"
+mypy = {version = "^0.720.0", allows-prereleases = true}
+pytest-bdd = "^3.2"
+selenium = "^3.141"
+pre-commit = "^1.18"
+detect-secrets = "^0.12.5"
+
+[tool.black]
+line-length = 79
+py36 = true
+skip-string-normalization = true
+
+[tool.poetry.scripts]
+server = "src/airmo/server/app:main"

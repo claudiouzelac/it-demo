@@ -13,7 +13,7 @@ as a group.
 
 ### Prerequisites
 
-* [Python 3.6+])(https://www.python.org/downloads/release/python-360/)
+* [Python 3.6+](https://www.python.org/downloads/release/python-360/)
 * [Pipenv](https://docs.pipenv.org/en/latest/)
 * [tfenv](https://github.com/tfutils/tfenv)
 * [Travis CI Client](https://github.com/travis-ci/travis.rb)

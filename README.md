@@ -31,10 +31,34 @@ as a group.
 9. Observe the status of the related continuous integration on your job.
 10. Upon completion of the work and a successful build, submit a pull request (PR).
 
+#### Pre-commit Hooks
+
+A variety of pre-commit hooks are installed as part of the development workflow.  These may be seen in `.pre-commit-config.yaml`.
+
+##### Secrets Check Hook
+
+There is a secrets check in place to prevent from accident check-in of AWS or other credentials into version control.  As a test, you may execute this command and attempt
+to commit this code:
+
+```
+cat >> credentials <<EOF
+
+[commit-test]
+aws_access_key_id = AKIA1111111111111111 # pragma: allowlist secret
+aws_secret_access_key = 1111111111111111111111111111111111111111 # pragma: allowlist secret
+EOF
+```
+
+Next as a test, execute the command, `git add credentials` and then make an
+attempt to `git commit -m 'adding a secret'`.  You will now see this as part of the
+hook:
+
+`Detect secrets...........................................................Failed`
+
 #### Test Execution
 
-Test Driven Devoplement (TDD) and Behavior Drive Development (BDD) tests can be ran with the command, `pytest --cov=./`.  This not only runs the tests but also creates a coverage 
-report for the code that you have written.  If you do not wish to have a coverage 
+Test Driven Devoplement (TDD) and Behavior Drive Development (BDD) tests can be ran with the command, `pytest --cov=./`.  This not only runs the tests but also creates a coverage
+report for the code that you have written.  If you do not wish to have a coverage
 report then merely omit the argument.
 
 #### Code Quality
@@ -54,7 +78,7 @@ Secrets can be added to the CI build job with the following command line express
 ### Deployment
 
 1. Install the correct version of Terraform with the command, `tfenv install`.
-2. 
+2.
 
 ### References
 

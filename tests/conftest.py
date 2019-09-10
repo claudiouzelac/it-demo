@@ -1,9 +1,22 @@
-"""
-This module contains shared fixtures, steps, and hooks.
-"""
+import pytest
+
+from appname.colors import create_app
+
+# @pytest.yield_fixture()
+# def app(request):
+#     app = create_app()
+#     with app.test_request_context():
+#         yield app
 
 
-def pytest_bdd_step_error(
-    request, feature, scenario, step, step_func, step_func_args, exception
-):
-    print(f'Step failed: {step}')
+@pytest.fixture(scope='session')
+def app(request):
+    app = create_app()
+    ctx = app.app_context()
+    ctx.push()
+
+    def teardown():
+        ctx.pop()
+
+    request.addfinalizer(teardown)
+    return app

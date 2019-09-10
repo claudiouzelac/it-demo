@@ -75,6 +75,14 @@ Secrets can be added to the CI build job with the following command line express
 
     `travis encrypt --add ENVAR_KEY=ENVAR_VALUE`
 
+### Running The Application
+
+You can run the application with the command, `python appname/colors.py`.
+
+#### Leveraging the Swagger
+
+You may use the Swagger by making a request to `http://localhost:5000/apidocs/`.
+
 ### Deployment
 
 1. Install the correct version of Terraform with the command, `tfenv install`.

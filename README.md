@@ -14,6 +14,7 @@ as a group.
 * [Python 3.6+])(https://www.python.org/downloads/release/python-360/)
 * [Pipenv](https://docs.pipenv.org/en/latest/)
 * [tfenv](https://github.com/tfutils/tfenv)
+* [Travis CI Client](https://github.com/travis-ci/travis.rb)
 
 ### Development
 
@@ -28,6 +29,23 @@ as a group.
 9. Observe the status of the related continuous integration on your job.
 10. Upon completion of the work and a successful build, submit a pull request (PR).
 
+#### Code Quality
+
+Code quality is measured using [CodeCov](https://codecov.io/gh/mozilla-it/it-demo).  This tool tracks code quality over a variety of projections.
+
+### Code Quality Gates
+
+
+### Continuous Integration (CI)
+
+This code base utilizes [Travis CI]() for it's CI process.
+
+#### Adding An Encrypted CI Secret
+
+Secrets can be added to the CI build job with the following command line expression:
+
+    `travis encrypt --add ENVAR_KEY=ENVAR_VALUE`
+
 ### Deployment
 
 1. Install the correct version of Terraform with the command, `tfenv install`.
@@ -38,6 +56,8 @@ as a group.
 2. [TravisCI Documentation](https://docs.travis-ci.com/)
 3. [Pipenv Documentation](https://docs.pipenv.org/en/latest/)
 4. [Poetry Documentation](https://poetry.eustace.io/docs/)
+5. [CodeCov Example Repository](https://github.com/codecov/example-python)
+6. [CodeCov Documentation](https://docs.codecov.io/docs)
 
 ## Author(s)
 

@@ -2,16 +2,14 @@ repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v2.1.0
     hooks:
-    -   id: trailing-whitespace
+    -   id: check-added-large-files
     -   id: end-of-file-fixer
-        exclude: CHANGELOG.md
     -   id: check-docstring-first
     -   id: check-json
-        exclude: /template/
     -   id: debug-statements
+    -   id: check-yaml
     -   id: name-tests-test
         args: [--django]
-    -   id: requirements-txt-fixer
     -   id: fix-encoding-pragma
         args: [--remove]
     -   id: pretty-format-json
@@ -39,4 +37,11 @@ repos:
     rev: 3.7.7
     hooks:
     -   id: flake8
-        exclude: ^docs/source/conf.py$
+-   repo: meta
+    hooks:
+    -   id: check-hooks-apply
+    -   id: check-useless-excludes
+# -   repo: https://github.com/pre-commit/mirrors-mypy
+#     rev: v0.720
+#     hooks:
+#     -   id: mypy

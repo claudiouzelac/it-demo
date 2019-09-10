@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/mozilla-it/it-demo.svg?branch=master)](https://travis-ci.org/mozilla-it/it-demo)
 
+[![codecov](https://codecov.io/gh/mozilla-it/it-demo/branch/master/graph/badge.svg)](https://codecov.io/gh/mozilla-it/it-demo)
+
 ## Objectives
 
 To present a methodology for continuous integration (CI) and continuous deploymentment (CD) that can be leveraged
@@ -29,16 +31,19 @@ as a group.
 9. Observe the status of the related continuous integration on your job.
 10. Upon completion of the work and a successful build, submit a pull request (PR).
 
+#### Test Execution
+
+Test Driven Devoplement (TDD) and Behavior Drive Development (BDD) tests can be ran with the command, `pytest --cov=./`.  This not only runs the tests but also creates a coverage 
+report for the code that you have written.  If you do not wish to have a coverage 
+report then merely omit the argument.
+
 #### Code Quality
 
-Code quality is measured using [CodeCov](https://codecov.io/gh/mozilla-it/it-demo).  This tool tracks code quality over a variety of projections.
-
-### Code Quality Gates
-
+Code quality is measured using [CodeCov](https://codecov.io/gh/mozilla-it/it-demo).  This tool tracks code quality over a variety of projections.  There is a badge in the header of this `README` file that will take you to the hosted site to observe code quality metrics.
 
 ### Continuous Integration (CI)
 
-This code base utilizes [Travis CI]() for it's CI process.
+This code base utilizes [Travis CI](https://travis-ci.com/mozilla-it/it-demo) for it's CI process.  There is a build status badge placed at the top of this `README` file to indicate the status of this projects build on the master branch.
 
 #### Adding An Encrypted CI Secret
 
@@ -49,6 +54,7 @@ Secrets can be added to the CI build job with the following command line express
 ### Deployment
 
 1. Install the correct version of Terraform with the command, `tfenv install`.
+2. 
 
 ### References
 

@@ -1,0 +1,50 @@
+language: python
+
+python:
+  - 3.6
+
+env:
+  - TERRAFORM_VERSION=0.12.8
+
+matrix:
+ fast_finish: true
+  allow_failures:
+    - python: nightly
+  include:
+    - python: 3.6
+      dist: xenial
+      sudo: required
+
+stages:
+  - build
+  - test
+  - name: deploy
+    if: branch = master
+      tfenv install
+
+before_install:
+  - git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+  - echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> ~/.bash_profile
+  - curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+  - unzip /tmp/terraform.zip -d /tmp
+  - mkdir -p ~/bin
+  - mv /tmp/terraform ~/bin
+  - export PATH="~/bin:$PATH"
+  - pip install poetry
+
+install:
+  - poetry install
+
+script:
+  - poetry run flake8 airmo
+  - poetry run flake8 tests
+
+after_success:
+  - coveralls
+
+notifications:
+  email:
+    recipients:
+      - shenderson@mozilla.com
+    on_success: never
+    on_failure: always

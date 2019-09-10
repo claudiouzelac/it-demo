@@ -13,7 +13,7 @@ as a group.
 
 * [Python 3.6+])(https://www.python.org/downloads/release/python-360/)
 * [Pipenv](https://docs.pipenv.org/en/latest/)
-* [Terraform](https://www.terraform.io/)
+* [tfenv](https://github.com/tfutils/tfenv)
 
 ### Development
 
@@ -29,6 +29,8 @@ as a group.
 10. Upon completion of the work and a successful build, submit a pull request (PR).
 
 ### Deployment
+
+1. Install the correct version of Terraform with the command, `tfenv install`.
 
 ### References
 

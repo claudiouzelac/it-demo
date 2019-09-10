@@ -19,6 +19,7 @@ matrix:
 
 before_install:
   - pip install poetry
+  - echo test secret TESTVAR is ${TESTVAR}
 
 install:
   - poetry install

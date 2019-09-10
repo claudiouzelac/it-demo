@@ -1,0 +1,50 @@
+language: python
+sudo: enabled
+python:
+- 3.6
+- 3.7
+- nightly
+addons:
+  apt:
+    packages:
+    - git
+env:
+  matrix:
+  - TERRAFORM_VERSION=0.12.8
+  global:
+    secure: UBqWMhJDk6/fe77XBMamkpbfM6zfEIU0ODxsngyFVAyITzujQFaG+tDNGoUVA9X9A1Mhizd3IkK9dzx9SERT4J8j41FcK1Pnxdk18ILAtw1wDgvTuUFQRtgdhvs5fIXIfdmPJLNhC15LdgIkY4FVqUm4xO70hCYqObsolNDmA2cGEPgg9bcMOVeU9U8m1+MNPJ/2lE2hbiPN31aT8emWka9tz+RcZSlzVBvj8IpGUBH/hGtfhMM76auA6iFlbLfqZ8uqiuprOT7ghrSU72dcCqR3nciBj6qcWxg7Yh8AauRqXMmEdna0I/QRVOWgKPksSSwZux+5h85Ax+zpOLAl2xvbp0XVLBtMPCA+Navm/cWKJusC0VZolkGKKEmCY8koISjCkGI1ds2z9RPX9WBV2rJh4G4x/aW3cV7oFzNsH19/SXymSOHYZI06zfCrXnWWqfMr4OI+xytSIL1Gh5Ee9GLn6H0sWHit7LytgSYag7pagFHTR9GpRJJ9Dp4MaEW8JdgXJOko7WDiUXtP0R12FdtBmJoVKznqjT/TrD2F2M9NO2FSMftifaUYh2DIIEcu1H4i3KFL92io/NnV+rklZ7cUSWh2HvuKFd+FdNbf9EEywnOtbJMye3wSc+05EYP79VlmFL8rED7xwj2sYXl9EbEasHdrROuVS2d4DA8AjeI=
+matrix:
+  fast_finish: true
+  allow_failures:
+  - python: nightly
+stages:
+- build
+- test
+- name: deploy
+  if: branch = master
+before_install:
+- git clone https://github.com/tfutils/tfenv.git ~/.tfenv
+- mkdir -p ~/.local/bin/
+- ". ~/.profile"
+- ln -s ~/.tfenv/bin/* ~/.local/bin
+- curl -sLo /tmp/terraform.zip https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+- unzip /tmp/terraform.zip -d /tmp
+- mkdir -p ~/bin
+- mv /tmp/terraform ~/bin
+- export PATH="~/bin:$PATH"
+- pip install poetry
+install:
+- poetry install
+script:
+- poetry run flake8 airmo
+- poetry run flake8 tests
+- pytest --cov=./
+after_success:
+- codecov
+- tfenv install
+notifications:
+  email:
+    recipients:
+    - shenderson@mozilla.com
+    on_success: never
+    on_failure: always

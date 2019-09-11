@@ -52,4 +52,7 @@ repos:
     hooks:
     -   id: detect-secrets
         args: ['--baseline', '.secrets.baseline']
-        exclude: .*/tests/.*
+-   repo: https://github.com/PyCQA/bandit
+    rev: 6019505cd26653098bbcf637a413fede1e98d619
+    hooks:
+    -   id: bandit

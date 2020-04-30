@@ -23,6 +23,7 @@ itsdangerous = "^1.1"
 cssmin = "^0.2.0"
 jsmin = "^2.2"
 flasgger = "^0.9.3"
+Flask-FeatureFlags = "^0.6"
 
 [tool.poetry.dev-dependencies]
 black = { version = "*", allows-prereleases = true }

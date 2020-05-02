@@ -1,9 +1,11 @@
 import flask_featureflags as feature_flags
 from flasgger import Swagger
-from flask import Flask
+from flask import Flask, render_template
 from flask import jsonify
 from flask_featureflags import FeatureFlag
 from flask_featureflags import is_active_feature
+from flask_split import split
+from flask_bootstrap import Bootstrap
 
 FEATURE_FLAGS = {
     'unfinished_feature': True,
@@ -15,10 +17,15 @@ def create_app():
     flask_app.config.from_object('config.DevelopmentConfig')
     swagger = Swagger(flask_app)
     features = FeatureFlag(flask_app)
+    bootstrap = Bootstrap(flask_app)
+    flask_app.register_blueprint(split)
     return flask_app
 
-
 app = create_app()
+
+@app.route("/", methods=["GET", "POST"])
+def index():
+  return render_template("index.html")
 
 # Example: http://127.0.0.1:5000/colors/mixer/red/blue/
 @app.route('/colors/mixer/<color1>/<color2>/')

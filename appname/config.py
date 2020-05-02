@@ -3,6 +3,7 @@ class DevelopmentConfig:
     FEATURE_FLAGS = {
         'color_mixer_feature': False,
     }
+    REDIS_URL = 'redis://localhost:6379'
 
 
 class ProductionConfig:
@@ -10,3 +11,4 @@ class ProductionConfig:
     FEATURE_FLAGS = {
         'color_mixer_feature': False,
     }
+    REDIS_URL = 'redis://localhost:6379'
